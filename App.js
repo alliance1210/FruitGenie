@@ -1,20 +1,54 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from "react";
+import { NavigationContainer,StatusBar } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Ionicons } from '@expo/vector-icons';
+//Pages
+import Login from "./src/pages/Login";
+
+import Tabs from "./Tabs";
+import Register from "./src/pages/Register";
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={Login} options={()=>({ 
+          headerShown: true,
+          // headerLeft: null,
+         
+          headerStyle: {
+            backgroundColor: '#E8542E',
+            elevation: 2,
+            height: 60
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            marginLeft: 7,
+            textAlign: "left",
+            fontSize: 20,
+          },
+        })} />
+        <Stack.Screen name="Register" component={Register} options={()=>({ 
+          headerShown: true,
+          // headerLeft: null,
+         
+          headerStyle: {
+            backgroundColor: '#E8542E',
+            elevation: 2,
+            height: 60
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            marginLeft: 7,
+            textAlign: "left",
+            fontSize: 20,
+          },
+        })} />
+        <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
