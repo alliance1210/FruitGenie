@@ -44,7 +44,7 @@ export default function Output({ navigation, route }) {
             email: userDetails.email,
             image: details.src,
             genus: details.genus,
-            family: details.family,
+            family: details.family,This is  a change
             order: details.order,
             carbohydrates: details.nutritions.carbohydrates,
             protein: details.nutritions.protein,
