@@ -15,13 +15,13 @@ export default function Profile({ navigation, route }) {
       console.log(value)
       if (value != null ) {
         console.log(value)
-        const response1 = await axios.get('http://192.168.12.200:8081/', {
+        const response1 = await axios.get('http://192.168.97.200:8081/', {
           headers: {
             Authorization: value
           }
         })
         setUserDetails(response1.data)
-        const response2 = await axios.post('http://192.168.12.200:8081/getfavorite',JSON.stringify({email:response1.data.email}), {
+        const response2 = await axios.post('http://192.168.97.200:8081/getfavorite',JSON.stringify({email:response1.data.email}), {
           headers: {
               'Content-Type': 'application/json'
           }
@@ -47,7 +47,7 @@ export default function Profile({ navigation, route }) {
       setUserData([]);
     }
     console.log("ID: ",_id)
-    axios.post('http://192.168.12.200:8081/removefavourite',JSON.stringify({_id:_id}), {
+    axios.post('http://192.168.97.200:8081/removefavourite',JSON.stringify({_id:_id}), {
             headers: {
                 'Content-Type': 'application/json'
             }

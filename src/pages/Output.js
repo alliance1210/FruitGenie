@@ -16,7 +16,7 @@ export default function Output({ navigation, route }) {
                 console.log(value)
                 if (value != null) {
                     console.log(value)
-                    await axios.get('http://192.168.12.200:8081/', {
+                    await axios.get('http://192.168.97.200:8081/', {
                         headers: {
                             Authorization: value
                         }
@@ -44,7 +44,7 @@ export default function Output({ navigation, route }) {
             email: userDetails.email,
             image: details.src,
             genus: details.genus,
-            family: details.family,This is  a change
+            family: details.family, 
             order: details.order,
             carbohydrates: details.nutritions.carbohydrates,
             protein: details.nutritions.protein,
@@ -52,7 +52,7 @@ export default function Output({ navigation, route }) {
             calories: details.nutritions.calories,
             sugar: details.nutritions.sugar
         }
-        axios.post("http://192.168.12.200:8081/addfavorite", JSON.stringify(userData), {
+        axios.post("http://192.168.97.200:8081/addfavorite", JSON.stringify(userData), {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -76,12 +76,14 @@ export default function Output({ navigation, route }) {
                     <Text style={styles.detail}>Genus: {details.genus ? details.genus : "NA"}</Text>
                     <Text style={styles.detail}>Family: {details.family ? details.family : "NA"}</Text>
                     <Text style={styles.detail}>Order: {details.order ? details.order : "NA"}</Text>
-                    <Text style={styles.detail}>Nutritions:</Text>
+                    <Text style={styles.subHeading}>Nutritions</Text>
                     <Text style={styles.detail}>Carbohydrates: {details.nutritions && details.nutritions.carbohydrates !== undefined ? details.nutritions.carbohydrates : "NA"}</Text>
                     <Text style={styles.detail}>Protein: {details.nutritions && details.nutritions.protein !== undefined ? details.nutritions.protein : "NA"}</Text>
                     <Text style={styles.detail}>Fats: {details.nutritions && details.nutritions.fat !== undefined ? details.nutritions.fat : "NA"}</Text>
                     <Text style={styles.detail}>Calories: {details.nutritions && details.nutritions.calories !== undefined ? details.nutritions.calories : "NA"}</Text>
                     <Text style={styles.detail}>Sugar: {details.nutritions && details.nutritions.sugar !== undefined ? details.nutritions.sugar : "NA"}</Text>
+                    <Text style={styles.subHeading}>Benefits </Text>
+                    <Text style={styles.detail}>{details.benefits?details.benefits: "NA"}</Text>
                 </View>
 
                 <View style={styles.buttonContainer}>
@@ -140,10 +142,18 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 10,
     },
+    subHeading: {
+        fontSize:20,
+        fontWeight:'bold',
+        marginTop:5,
+        marginBottom:2,
+    },
+
     detail: {
         fontSize: 16,
         marginBottom: 5,
     },
+    
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',

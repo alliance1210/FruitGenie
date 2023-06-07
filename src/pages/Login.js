@@ -25,7 +25,7 @@ export default function Login({ navigation }) {
                 // console.log(value)
                 if (value != null) {
                 console.log(value)
-                axios.get('http://192.168.12.200:8081/', {
+                axios.get('http://192.168.97.200:8081/', {
                         headers: {
                             Authorization: value
                         }
@@ -55,7 +55,7 @@ export default function Login({ navigation }) {
             return;
         }
         else {
-            axios.post('http://192.168.12.200:8081/signin', JSON.stringify(userData), {
+            axios.post('http://192.168.97.200:8081/signin', JSON.stringify(userData), {
                 headers: {
                     'Content-Type': 'application/json'
                 }

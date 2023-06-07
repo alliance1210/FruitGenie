@@ -31,7 +31,7 @@ export default function Register({ navigation }) {
             // formData.append('username', username);
             const data = {name,email,password}
              console.log(data)
-            axios.post('http://192.168.12.200:8081/signup', JSON.stringify(data),{
+            axios.post('http://192.168.97.200:8081/signup', JSON.stringify(data),{
                 headers:{
                     'Content-Type': 'application/json'
                 }

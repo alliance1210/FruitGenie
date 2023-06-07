@@ -58,31 +58,47 @@ export default function Dashboard({ navigation, route }) {
     });
 
     axios
-      .post('http://192.168.12.200:5000/classify', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then((response) => {
-        // console.log(data)
-        const selectedPlant = data.filter(val => val.name === response.data.results[0].class)[0];
-        const data2 = {
-          name: `${response.data.results[0].class} ${response.data.results[0].confidence}`,
-          id: selectedPlant.id,
-          genus: selectedPlant.genus,
-          family: selectedPlant.family,
-          order: selectedPlant.order,
-          src: image,
-          nutritions: selectedPlant.nutritions
-        }
-        setImage(null)
-        console.log(response.data)
-        navigation.push("Result", data2)
-      })
-      // "name":response.data.results[0].class+" "+response.data.results[0].confidence,"src":image 
-      .catch(function (error) {
-        alert(error);
-      });
+    .post('http://192.168.97.200:5000/classify', formData , {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    .then((response) => {
+      const fruit={
+        fruit:response.data.results[0].class,
+      } 
+      console.log(fruit.fruit)
+      axios
+        .post('http://192.168.97.200:8081/fruitdetails', JSON.stringify(fruit), {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        .then((response2) => {
+          const selectedPlant = data.filter(val => val.name === response.data.results[0].class)[0];
+          const {fruitdetails} = response2.data
+          const data2 = {
+            name: `${response.data.results[0].class} ${response.data.results[0].confidence}`,
+            benefits: fruitdetails,
+            id: selectedPlant.id,
+            genus: selectedPlant.genus,
+            family: selectedPlant.family,
+            order: selectedPlant.order,
+            src: image,
+            nutritions: selectedPlant.nutritions
+          };
+  
+          setImage(null);
+          console.log(response.data);
+          navigation.push("Result", data2);
+        })
+        .catch(function (error) {
+          console.log(error+" details");
+        });
+    })
+    .catch(function (error) {
+      alert(error);
+    });
   };
 
   const pickImage = async () => {

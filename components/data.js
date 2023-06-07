@@ -420,7 +420,7 @@ const data = [{
     }
 }, {
     "genus": "Cucumis",
-    "name": "MuskMelon",
+    "name": "Muskmelon",
     "id": 41,
     "src":"https://i.ibb.co/w7hw02p/Melon.jpg",
     "family": "Cucurbitaceae",
